@@ -1,12 +1,17 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 
-function Products(){
-    return(
-        <View style={styles.productsSection}>
-          <Text >seccion Productos</Text>
-        </View>
-    )
+class Products extends Component {
+    
+    render(){
+
+        return(
+          <View style={styles.productsSection}>
+            <Text >seccion Productos</Text>
+          </View>
+        )
+    }
+    
 }
 
 const styles = StyleSheet.create({  

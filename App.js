@@ -1,35 +1,26 @@
-import React, {Component} from 'react';
-import { StyleSheet, ImageBackground } from 'react-native';
+import React from 'react';
 
-// importamos contenedores
-import Header from './src/containers/header'
-import Body from './src/containers/body'
+// Traemos stack navigation
+import {createAppContainer} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
 
-// se crea componenete principal
-class xProject extends Component {
+// Se importa vista home
+import HomeScreen from './src/Modules/Home/home'
+import OrdersScreen from './src/Modules/Orders/orders'
 
-  render(){
-    return (
-
-      // Contenedor ppal
-      <ImageBackground 
-        source={require('./assets/back1.jpg')} style={styles.container}>
-        {/* Contenedor de botones d enavegacion */}
-        <Header />
-        {/* Contenedor para secciones del body */}
-        <Body />   
-    </ImageBackground>    
-
-    );
+const AppStackNavigator = createStackNavigator({
+  HomeS: {
+    screen: HomeScreen,
+    navigationOptions: {
+      title: 'RappiApp'
+    }
+  },  
+  Orders: {
+    screen: OrdersScreen,
+    navigationOptions: {
+      title: 'RappiApp'
+    }
   }
-}
-
-const styles = StyleSheet.create({  
-  container: {
-    flex: 1,
-    marginTop: 30,
-    flexDirection:'column',
-  },
 });
 
-export default xProject;
+export default createAppContainer(AppStackNavigator)
