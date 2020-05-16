@@ -1,13 +1,25 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 
+// importamos contenedores
+import Header from './src/containers/header'
+import Body from './src/containers/body'
+
+// se crea componenete principal
 class xProject extends Component {
 
   render(){
     return (
-      <View style={styles.container}>
-        <Text style={styles.Text}>does it takes too much?</Text>
-      </View>    
+
+      // Contenedor ppal
+      <ImageBackground 
+        source={require('./assets/back1.jpg')} style={styles.container}>
+        {/* Contenedor de botones d enavegacion */}
+        <Header />
+        {/* Contenedor para secciones del body */}
+        <Body />   
+    </ImageBackground>    
+
     );
   }
 }
@@ -15,13 +27,8 @@ class xProject extends Component {
 const styles = StyleSheet.create({  
   container: {
     flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 30,
     flexDirection:'column',
-  },
-  Text: {
-    color: '#fff',
   },
 });
 

@@ -1,0 +1,23 @@
+Screen Layout:
+- App
+    - Orders Button
+    - Orders List Button
+- Menu
+    - Map
+    - Products
+- OrdersList
+    - Orders
+
+Folder Layout:
+- assets
+    - 2pap.jpg
+    - Products
+        - productImage.jpg
+- Components
+    - Menu
+        - Map
+            - Map.js
+        - Products
+            - Product.js
+    - OrdersList
+        - order.js
