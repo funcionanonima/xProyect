@@ -1,33 +1,51 @@
 import React, {Component} from 'react'
 import {StyleSheet, ImageBackground, Button, Text, View} from 'react-native'
 
+import Modal from '../common/modal'
+import FList from './flist'
+
+import { db } from '../../App/services/config'
+
 class Orders extends Component {
 
   constructor(props){
     super(props);
+
     this.state = {
-      order: 'Hamburguesa',
-      price: 120,
-      status: false,
-      deliver: 'Joshep'
+      message: null,
+      error: null,
+      orders: null
     }
   }
-    
+
+  componentDidMount(){
+    db.collection("order")
+      .get()
+      .then( snapshot => {
+        const orders = []
+        snapshot.forEach(doc => {
+          const data = doc.data()
+          // console.log(data)
+          orders.push(data)
+        })
+        this.setState({
+          orders: orders
+        })
+      })
+      .catch( error => console.log(error))
+  }
+
   render(){
 
-    let {order} = this.state
-    let {price} = this.state
+    const {orders} = this.state
  
     return (
 
       <ImageBackground 
         source={require('../../../assets/back1.jpg')} style={styles.container}>
       <View style={styles.list}>
-        <Text style={styles.register}>Lista ordenes</Text>
-        <Text >Orden de: {order} por ${price} | Estado : {this.state.status == false ? 'PENDIENTE' : 'FINALIZADO' }</Text>
-        <Text >Orden de: {order} por ${price} | Estado : {this.state.status == false ? 'PENDIENTE' : 'FINALIZADO' }</Text>
-        <Text >Orden de: {order} por ${price} | Estado : {this.state.status == false ? 'PENDIENTE' : 'FINALIZADO' }</Text>
-        
+        <Text style={styles.title}>Ordenes</Text>
+        <FList data = { orders }/>
       </View>
       <Button   
         onPress={() => this.props.navigation.navigate('HomeS')}             
@@ -36,7 +54,7 @@ class Orders extends Component {
     </ImageBackground>    
 
     );
-}
+  }
 }
 
 const styles = StyleSheet.create({  
@@ -44,14 +62,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection:'column',
   },
+  title: {
+    fontSize: 20,
+    marginTop:20,
+    color: 'white'
+  },
   list: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  register: {
-    
-  }
 });
 
 export default Orders

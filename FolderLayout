@@ -21,3 +21,23 @@ Folder Layout:
             - Product.js
     - OrdersList
         - order.js
+
+<View style={styles.productsSection}>
+          <Text >Menú</Text>
+          {
+          this.state.products &&
+          this.state.products.map( product => {
+            return(
+              <View style={{padding:20, flex:1, flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
+                <Text style={{flex:4}}>{product.name} </Text>
+                <Text style={{flex:2}}>{product.price}</Text>
+                 {/* <TextInput style={{flex:1, borderWidth:2, borderColor:"#fff", padding:10}} keyboardType={'numeric'}/> */}
+                 <Button style={{flex:2}} title="Pedir" onPress={this.addOrder()}/>
+                 {/* <Modal
+                  Text="Ordenar"
+                 /> */}
+              </View>
+            )
+          }) 
+        }
+        </View>
