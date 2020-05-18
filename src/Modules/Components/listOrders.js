@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, ActivityIndicator  } from 'react-native';
 import Constants from 'expo-constants';
 
 function Orders({ customer, product, quantity, price }) {
@@ -7,16 +7,14 @@ function Orders({ customer, product, quantity, price }) {
     <View style={styles.item}>
         <Text style={styles.title}>Señor@: {customer}, </Text>
         <Text style={styles.title}>pedido: {product}</Text>
-        <Text style={styles.title}>cantidad: {quantity}</Text>
-        <Text style={styles.title}> Total: {price}</Text>      
+        <Text style={styles.title}>Total: {price}</Text>      
     </View>
   );
 }
 
 export default function App({data}) {
-    const DATA = data
-    console.log(DATA)
-  return (
+  const DATA = data
+  return data ? (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
@@ -25,14 +23,13 @@ export default function App({data}) {
                 customer = {item.customer}
                 deliver = {item.deliver}
                 price = {item.price}
-                quantity = {item.quantity}
                 status = {item.status}
             /> 
         }
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
-  );
+  ) : <ActivityIndicator style={{flex:1}} animating size='large'/>;
 }
 
 const styles = StyleSheet.create({

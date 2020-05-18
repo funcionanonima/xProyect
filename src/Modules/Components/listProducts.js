@@ -1,41 +1,41 @@
-import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, TextInput, Button } from 'react-native';
+import React, {useState} from 'react';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants';
 
-import Modal from '../common/modal'
+import Modal from './modal'
 
-function Item({ name, price }) {
-  let quant
-  return (
+function Item({ name, price}) {  
+
+  return name ? (    
     <View style={styles.item}>
       <Text style={styles.name}>{name}</Text>
+      {/* <Button  title="Apretame" /> */}
       <Text style={styles.price}>${price}</Text>   
         {/* <TextInput style={styles.qinput} keyboardType={'numeric'} /> */}
         {/* <Button title="Comprar"/> */}
       <Modal style={styles.modal} 
-              customer= {'user'}
-              name={name}
-              price={price}
+          name={name}
+          price={price}
       />   
     </View>
-  );
+  ): <ActivityIndicator style={{flex:1}} animating size='large'/>;
 }
 
 export default function App({data}) {
     const DATA = data
-    console.log(DATA)
-  return (
+    // console.log(DATA)
+  return data ? (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
         renderItem={({ item }) => 
           <Item name={item.name}
                 price={item.price}
-        />}
+        />}        
         keyExtractor={item => item.id}
       />
     </SafeAreaView>
-  );
+  ): <ActivityIndicator style={{flex:1}} animating size='large'/>;
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    fontSize: 16,
     borderRadius: 10,
   },
   name: {

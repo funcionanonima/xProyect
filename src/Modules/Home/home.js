@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import { StyleSheet, ImageBackground, Button } from 'react-native'
 
-// importamos contenedores
-import Map from '../Map/map'
+// import Map from '../Map/map'
 import Products from '../Products/products'
 
 class Home extends Component {
@@ -13,7 +12,7 @@ class Home extends Component {
         // Contenedor ppal
         <ImageBackground 
           source={require('../../../assets/back1.jpg')} style={styles.container}>          
-          <Map />
+          {/* <Map /> */}
           <Products />
           <Button   
             onPress={() => this.props.navigation.navigate('Orders')}             

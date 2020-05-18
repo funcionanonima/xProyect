@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, ImageBackground, Button, Text, View} from 'react-native'
 
-import Modal from '../common/modal'
-import FList from './flist'
+import FList from '../Components/listOrders'
 
 import { db } from '../../App/services/config'
 

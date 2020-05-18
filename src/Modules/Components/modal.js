@@ -8,8 +8,37 @@ import {
   View
 } from "react-native";
 
+import { db } from '../../App/services/config'
 
-const App = ({name, price, customer}) => {
+const App = ({name, price}) => {  
+
+  const customer = 'usuario'
+  const deliver = 'PedroLleva'
+  const status = false
+
+  // data = state , setData = setState
+  const[order, setOrder] = useState({
+    name: name,
+    price: price,
+    customer: customer,
+    deliver: deliver,
+    status: status, 
+  })
+
+  const handleChange = e => {
+    setOrder({
+      ...order,
+      [e.target.name]: e.target.value
+    });
+  } 
+
+  console.log(order)
+
+  const addOrder = () => {
+    db.collection('order')
+      .add(order)
+  }  
+
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
@@ -23,7 +52,7 @@ const App = ({name, price, customer}) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>{name} | {price} | {customer}</Text>
+            <Text onChange={handleChange} style={styles.modalText}>{customer} | {name} | $ {price}</Text>
             <View style={styles.buttons}>
             <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "#2196F3", marginHorizontal:10 }}
@@ -37,6 +66,7 @@ const App = ({name, price, customer}) => {
             <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "green", marginHorizontal:10 }}
               onPress={() => {
+                addOrder();
                 setModalVisible(!modalVisible);
               }}
             >

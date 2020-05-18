@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
+import {View, Button} from 'react-native'
 
 import { db } from '../../App/services/config'
 
-import FList from './flist'
+import FList from '../Components/listProducts'
 
 class Products extends Component {
 
@@ -10,10 +11,8 @@ class Products extends Component {
     super(props);
 
     this.state = {
-      error: null,
       products: null,
-      newOrder: null
-    }
+    }    
   }
 
   componentDidMount(){
@@ -23,7 +22,6 @@ class Products extends Component {
         const products = []
         snapshot.forEach(doc => {
           const data = doc.data()
-          // console.log(data)
           products.push(data)
         })
         this.setState({
@@ -31,20 +29,15 @@ class Products extends Component {
         })
       })
       .catch( error => console.log(error))
-  }    
-
-  addOrder(){
-    alert('funciona')
-  }
+  }      
     
   render(){
 
     const {products} = this.state
-    console.log(products)
 
-      return(        
+      return(       
         <FList data = {products} 
-        />
+          /> 
       )
   }
     
