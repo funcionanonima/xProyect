@@ -11,8 +11,6 @@ class Orders extends Component {
     super(props);
 
     this.state = {
-      message: null,
-      error: null,
       orders: null
     }
   }
@@ -43,8 +41,9 @@ class Orders extends Component {
       <ImageBackground 
         source={require('../../../assets/back1.jpg')} style={styles.container}>
       <View style={styles.list}>
-        <Text style={styles.title}>Ordenes</Text>
-        <FList data = { orders }/>
+        <Text style={styles.text}>Ordenes</Text>
+        <FList style={styles.list}
+         data = { orders }/>
       </View>
       <Button   
         onPress={() => this.props.navigation.navigate('HomeS')}             
@@ -61,9 +60,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection:'column',
   },
-  title: {
-    fontSize: 20,
-    marginTop:20,
+  text: {
+    fontSize: 30,
+    marginTop: 20,
     color: 'white'
   },
   list: {

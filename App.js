@@ -12,13 +12,13 @@ const AppStackNavigator = createStackNavigator({
   HomeS: {
     screen: HomeScreen,
     navigationOptions: {
-      title: 'RappiApp'
+      title: 'xProApp'
     }
   },  
   Orders: {
     screen: OrdersScreen,
     navigationOptions: {
-      title: 'RappiApp'
+      title: 'xProApp'
     }
   }
 });
