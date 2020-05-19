@@ -2,21 +2,46 @@ import React, {useState} from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants';
 
-import Modal from './modal'
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
+import Modal from './detailsPreOrder'
 
 function Item({ name, price}) {  
 
+  const delivers = [
+    "BikerDeliver", 
+    "CarDeiver", 
+    "TruckDeliver",
+  ];
+  const users = [
+    "George", 
+    "Lia", 
+    "Brandon",
+    "Charles"
+  ];
+  const statuses = [
+    false,
+    true
+  ];
+
+  const customer = users[Math.floor(Math.random() * users.length)];
+  const deliver = delivers[Math.floor(Math.random() * delivers.length)];
+  const status = statuses[Math.floor(Math.random() * statuses.length)];
+
   return name ? (    
     <View style={styles.item}>
-      <Text style={styles.name}>{name}</Text>
-      {/* <Button  title="Apretame" /> */}
-      <Text style={styles.price}>${price}</Text>   
-        {/* <TextInput style={styles.qinput} keyboardType={'numeric'} /> */}
-        {/* <Button title="Comprar"/> */}
-      <Modal style={styles.modal} 
-          name={name}
-          price={price}
-      />   
+      <MaterialCommunityIcons style={styles.icon} name="food" size={60} color="white" />
+      <View style={styles.prod}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.price}>${price}</Text> 
+      </View>   
+        <Modal style={styles.modal} 
+            name={name}
+            price={price}
+            customer={customer}
+            deliver={deliver}
+            status={status}
+        />          
     </View>
   ): <ActivityIndicator style={{flex:1}} animating size='large'/>;
 }
@@ -40,28 +65,36 @@ export default function App({data}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     marginTop: Constants.statusBarHeight,
+    paddingBottom:20,
   },
   item: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f',
+    backgroundColor: '#ff9933',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    borderRadius: 10,
+    borderRadius: 10,  
+  },
+  icon: {
+    flex: 3
+  },
+  prod: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection:'column',
+    flex: 6
   },
   name: {
-    flex:5,    
+    fontSize: 16,
+    color: 'white',
+    flex:1,    
   },
   price: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold',
     flex: 2,
   },
-  qinput: {
-    borderColor:"#fff", 
-    justifyContent: 'flex-end',
-    backgroundColor: 'white'
-  } 
 });

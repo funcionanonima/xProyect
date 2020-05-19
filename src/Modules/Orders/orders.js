@@ -22,12 +22,12 @@ class Orders extends Component {
         const orders = []
         snapshot.forEach(doc => {
           const data = doc.data()
-          // console.log(data)
           orders.push(data)
         })
         this.setState({
           orders: orders
         })
+        console.log(orders)
       })
       .catch( error => console.log(error))
   }
@@ -40,8 +40,10 @@ class Orders extends Component {
 
       <ImageBackground 
         source={require('../../../assets/back1.jpg')} style={styles.container}>
-      <View style={styles.list}>
+      <View style={styles.container}>
+        <View style={styles.title}>
         <Text style={styles.text}>Ordenes</Text>
+        </View>
         <FList style={styles.list}
          data = { orders }/>
       </View>
@@ -65,10 +67,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     color: 'white'
   },
+  title: {
+    alignItems:'center'
+  },
   list: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

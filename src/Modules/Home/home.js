@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { StyleSheet, ImageBackground, Button, View } from 'react-native'
+import { StyleSheet, ImageBackground, Button, View, Text } from 'react-native'
 
 import Map from '../Map/map'
 import Products from '../Products/products'
@@ -9,14 +9,15 @@ class Home extends Component {
   render(){
       return (
 
-        // Contenedor ppal
-        <View style={styles.container}      >
+        <View style={styles.container}>
           <Map />
-          <Products />
-          <Button   
+          <Products / >
+          <View style={{backgroundColor:'#17a2b8'}}>
+          <Button
             onPress={() => this.props.navigation.navigate('Orders')}             
             title="Ordenes"
           />
+          </View>
       </View>    
   
       );
